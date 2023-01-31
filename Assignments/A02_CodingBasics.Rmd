@@ -1,6 +1,6 @@
 ---
 title: "JiahuanLi_A02_CodingBasics"
-author: "Student Name"
+author: "Jiahuan Li"
 output: pdf_document
 geometry: margin=2.54cm
 editor_options: 
