@@ -30,10 +30,15 @@ This exercise accompanies the lessons in Environmental Data Analytics on coding 
 
 4.  Insert comments in your code to describe what you are doing.
 
-```{r}
+```{r day1, echo=TRUE, results=T}
 #1. 
+c1 = seq(100, from = 1, by = 4)
+c1
+
 
 #2. 
+mean(c1)
+median(c1)
 
 #3. 
 
