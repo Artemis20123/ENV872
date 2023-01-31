@@ -68,8 +68,8 @@ How could you add columns to *df_car_speed*?
 ```{r}
 car_dist <- cars$dist
 
-#Option 1
-df <- cbind(df_car_speed,car_dist)  #similarly rows could be added using rbind()
+#Option 1 (one is df, the other is vector format, will end up in df)
+df <- cbind(df_car_speed,car_dist)  #similarly, rows could be added using rbind() (that is adding new rows to df)
 class(df)
 df
 
@@ -86,6 +86,10 @@ Note that when we transformed the vector in a data frame the name of the vector 
 ```{r}
 colnames(df)  #or simply names()
 names(df)
+
+# rename
+# colnames(df) = c("name1","name2")
+# names(df)
 ```
 
 ## Creating a data frame
@@ -107,12 +111,19 @@ ncol(df)
 nrow(df)  
 length(df)  #same as ncol
 summary(df)
-head(df) #show the first 6 rows of df
+head(df, 10) #show the first 6 (default) rows of df
 
-#If you know the number of the column you want you can refer to that to access column
-df[,1]
+# looking for help
+??head
+
+#If you know the number of the column you want you can refer to that to access column/value/slice of origin df
+vector = df[,1]
+value = df[10,1]
+new_df = df[10:20, 1:2]
+new_df
 
 #you could also use this notation to delete columns
-df <- df[,-2]
-df
+## usually do not do that. just creat new smaller df
+df2 <- df[,-2]
+df2
 ```
