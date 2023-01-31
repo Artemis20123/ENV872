@@ -1,5 +1,5 @@
 ---
-title: "Assignment 2: Coding Basics"
+title: "JiahuanLi_A02_CodingBasics"
 author: "Student Name"
 output: pdf_document
 geometry: margin=2.54cm

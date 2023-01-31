@@ -28,7 +28,7 @@ $ git config --global --list
 install.packages("usethis")
 gitcreds::gitcreds_set()
 ### then enter the token
-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
+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
 
 ### method 2 (just when you want to commit and push)
 ### do the regular steps, it will automatically guide you to vertify your account (via email)
