@@ -68,7 +68,7 @@ name <- c("student 1", "student 2", "student 3", "student 4")
 typeof (name)
 
 ## score is a numeric vector
-score <- c("85", "78", "45", "47")
+score <- c(85, 78, 45, 47)
 typeof (score)
 
 ## pass is a logical vector
@@ -79,6 +79,7 @@ typeof (pass)
 ## the dataframe is named "student records"
 combine <- cbind(name, score, pass)
 student_records <- as.data.frame(combine)
+student_records
 
 #8.
 ## the dataframe already has the column names because it is made from vectors
