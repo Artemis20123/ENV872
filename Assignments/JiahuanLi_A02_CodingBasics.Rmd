@@ -32,26 +32,23 @@ This exercise accompanies the lessons in Environmental Data Analytics on coding 
 
 ```{r day1, echo=TRUE, results=T}
 #1. 
+## c1: name of the sequence. 
 c1 <- seq(100, from = 1, by = 4)
 c1
-## c1: name of the sequence. 
 
 #2. 
-mean <- mean(c1)
 ## the mean of ci is 49
-
+mean <- mean(c1)
+## the median of c1 is also 49
 median <- median(c1)
-## the median of c1 is also 49.
 
 #3. 
-
+## a simple if command. The reply is false, indicating the mean is not greater than the median.
 if (mean > median){
   print ("True")
 } else {
   print ("False")
 }
-## a simple if command. The reply is false, indication the mean is not greater than the median.
-
 ```
 
 ## Basics Day 2
@@ -66,23 +63,22 @@ if (mean > median){
 
 ```{r}
 #5.
-
+## name is a character vector
 name <- c("student 1", "student 2", "student 3", "student 4")
 typeof (name)
-## name is a character vector
 
+## score is a numeric vector
 score <- c("85", "78", "45", "47")
 typeof (score)
-## score is a numeric vector
 
+## pass is a logical vector
 pass <- c(TRUE, TRUE, FALSE, FALSE)
 typeof (pass)
-## pass is a logical vector
 
 #7.
+## the dataframe is named "student records"
 combine <- cbind(name, score, pass)
 student_records <- as.data.frame(combine)
-## the dataframe is named "student records"
 
 #8.
 ## the dataframe already has the column names because it is made from vectors
