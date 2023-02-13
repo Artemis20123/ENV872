@@ -80,7 +80,7 @@ print(paste("The dimension of data frame is:", dimensions[1], dimensions[2]))
 
 6.  Using the `summary` function on the "Effect" column, determine the most common effects that are studied. Why might these effects specifically be of interest?
 
-```{r q6, include=FALSE}
+```{r q6, echo = T, results = 'hide'}
 
 sort(summary(Neonics$Effect), decreasing = TRUE)
 ```
@@ -89,7 +89,7 @@ sort(summary(Neonics$Effect), decreasing = TRUE)
 
 7.  Using the `summary` function, determine the six most commonly studied species in the dataset (common name). What do these species have in common, and why might they be of interest over other insects? Feel free to do a brief internet search for more information if needed.[TIP: The `sort()` command can sort the output of the summary command...]
 
-```{r q7, include=FALSE}
+```{r q7, echo = T, results = 'hide'}
 
 sort(summary(Neonics$Species.Common.Name), decreasing = TRUE)
 ```
@@ -175,14 +175,17 @@ ggplot(Litter, aes(functionalGroup)) + geom_bar()
 
 15. Using `geom_boxplot` and `geom_violin`, create a boxplot and a violin plot of dryMass by functionalGroup.
 
-```{r}
-ggplot(Litter, aes(dryMass, cfunctionalGroup)) + geom_bar()
+```{r q15}
+
+ggplot(Litter, aes(y = dryMass, x = functionalGroup)) + geom_boxplot()
+
+ggplot(Litter, aes(y = dryMass, x = functionalGroup)) + geom_violin()
 ```
 
 Why is the boxplot a more effective visualization option than the violin plot in this case?
 
-> Answer:
+> Answer: violin plots are similar to box plots, except that they also show the kernel probability density of the data at different values. However, because the data in this dataframe is sparse, i.e., the observations of function groups on different dryMass are limited and without distinct difference, the width of the violin plot is small and it looks just like a line. Therefore, the shape of the violin plot can hardly be identified. However, for the boxplot, the box width is fixed and its shape is illustrated according to the quantiles of the dataframe. Thus, the boxplot will always keep a recognizable shape.
 
 What type(s) of litter tend to have the highest biomass at these sites?
 
-> Answer:
+> Answer: Needles
