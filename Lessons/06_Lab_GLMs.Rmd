@@ -5,16 +5,17 @@ date: "Spring 2023"
 output: pdf_document
 geometry: margin=2.54cm
 editor_options: 
-  chunk_output_type: console
+  chunk_output_type: inline
 ---
 
 ## Objectives
-1. Answer questions on M5/A5
-2. Answer questions on M6 - GLMs
-3. Practice more application GLM to real datasets
 
+1.  Answer questions on M5/A5
+2.  Answer questions on M6 - GLMs
+3.  Practice more application GLM to real datasets
 
 ## Set up
+
 ```{r, message = FALSE}
 library(tidyverse)
 library(agricolae)   
@@ -36,40 +37,56 @@ mytheme <- theme_classic(base_size = 14) +
 theme_set(mytheme)
 ```
 
-
-
 ## Visualization and interpretation challenge
 
 Create three plots, each with appropriately formatted axes and legends. Choose a non-default color palette.
 
-1. geom_density of ozone divided by year (distinguish between years by adding transparency to the geom_density layer).
-2. geom_boxplot of ozone divided by year. Add letters representing a significant difference between 2018 and 2019 (hint: stat_summary). 
-3. geom_violin of ozone divided by year, with the 0.5 quantile marked as a horizontal line. Add letters representing a significant difference between 2018 and 2019. 
+1.  geom_density of ozone divided by year (distinguish between years by adding transparency to the geom_density layer).
+2.  geom_boxplot of ozone divided by year. Add letters representing a significant difference between 2018 and 2019 (hint: stat_summary).
+3.  geom_violin of ozone divided by year, with the 0.5 quantile marked as a horizontal line. Add letters representing a significant difference between 2018 and 2019.
 
 ```{r}
 #Exercise 1:
+library(ggplot2)
+ggplot(EPAair, aes(x = Ozone, fill = as.factor(Year))) + 
+  geom_density(alpha = 0.5) +
+  scale_fill_manual(values = c("darkgreen", "blue")) +
+  labs(x = "Ozone AQI value", y = "Density", fill = "")
 
+ggplot(EPAair, aes(x = as.factor(Year), y = Ozone)) + 
+  geom_boxplot() +
+  stat_summary(geom="text", fun = max, vjust = -1, size = 4, label = c("b", "a")) +
+  labs(x = "", y = "Ozone AQI value")
 
+ggplot(EPAair, aes(x = as.factor(Year), y = Ozone)) + 
+  geom_violin(draw_quantiles = 0.5) +
+  stat_summary(geom="text", fun = max, vjust = -1, size = 4, label = c("b", "a")) +
+  labs(x = "", y = "Ozone AQI value") +
+  ylim(0,150)
 ```
 
 ## Linear Regression
 
-Important components of the linear regression are the correlation and the R-squared value. The **correlation** is a number between -1 and 1, describing the relationship between the variables. Correlations close to -1 represent strong negative correlations, correlations close to zero represent weak correlations, and correlations close to 1 represent strong positive correlations. The **R-squared value** is the correlation squared, becoming a number between 0 and 1. The R-squared value describes the percent of variance accounted for by the explanatory variables. 
+Important components of the linear regression are the correlation and the R-squared value. The **correlation** is a number between -1 and 1, describing the relationship between the variables. Correlations close to -1 represent strong negative correlations, correlations close to zero represent weak correlations, and correlations close to 1 represent strong positive correlations. The **R-squared value** is the correlation squared, becoming a number between 0 and 1. The R-squared value describes the percent of variance accounted for by the explanatory variables.
 
 For the NTL-LTER dataset, can we predict PM2.5 from Ozone?
 
 ```{r}
 
 #Exercise 2: Run a linear regression PM2.5 by Ozone. Find the p-value and R-squared value. 
-
+lm(EPAair$PM2.5 ~ EPAair$Ozone)
+a = lm(EPAair$PM2.5 ~ EPAair$Ozone)
+summary(a)
 
 
 #Exercise 3: Build a scatterplot. Add a line and standard error for the linear regression. Add the regression equation to the plot
+plot(a)
 
-
-
+# se shown in the grey region
+ggplot(EPAair, aes(Ozone, PM2.5)) +
+  geom_point() +
+  geom_smooth(method = "lm", col = "blue", se = TRUE)
 ```
-
 
 ## AIC to select variables
 
@@ -79,19 +96,37 @@ What other variables can we add to improve model?
 
 #Exercise 4: Build correlation plots and identify more possible explanatory variables to add to the regression.
 
+# install.packages("corrplot")
+library(corrplot)
 
+# how to assign a value to each county and include it into the correlation plot?
+subset =  EPAair %>%
+          select(COUNTY:Ozone) %>%
+          na.omit() %>%
+          mutate(COUNTY = group_indices(as.character(COUNTY)) ,
+                 Month = as.factor(Month),
+                 Year = as.factor(Year))
 
+subset1 = EPAair %>%
+          select(mean_Lat:Ozone) %>%
+          na.omit()
+
+Corr <- cor(subset1)
+corrplot(Corr, method = "ellipse")
+corrplot.mixed(Corr, upper = "ellipse")
 
 #Exercise 5: Choose a model by AIC in a Stepwise Algorithm. Do the results from AIC match the variables you selected on Exercise 4?
 
-
+AIC = lm(data= subset1, PM2.5 ~ Ozone + Year + Month + mean_Lat + mean_Lng)
+summary(AIC)
+step(AIC)
 
 
 #Exercise 6: Run another regression using the variables selected on Exercise 6. Compare r-squared value with the one from Exercise 2. 
 
+best = lm(data= subset1, PM2.5 ~ Ozone + Month + mean_Lat + mean_Lng)
+summary(best)
 ```
-
-
 
 ## Litter Exercise
 

@@ -10,9 +10,9 @@ subtitle: "Web address for GitHub repository"
 author: "Name"
 fontsize: 12pt
 mainfont: Times New Roman
-
 ---
 
+```{=tex}
 \newpage
 \tableofcontents 
 \newpage
@@ -20,7 +20,7 @@ mainfont: Times New Roman
 \newpage
 \listoffigures 
 \newpage
-
+```
 ```{r setup, include=FALSE}
 # Set your working directory
 
@@ -32,42 +32,30 @@ mainfont: Times New Roman
 
 ```
 
-
 # Rationale and Research Questions
-
-
 
 \newpage
 
 # Dataset Information
 
-
-
 \newpage
 
-# Exploratory Analysis 
-
-
+# Exploratory Analysis
 
 \newpage
 
 # Analysis
 
+## Question 1: \<insert specific question here and add additional subsections for additional questions below, if needed\>
 
-
-## Question 1: <insert specific question here and add additional subsections for additional questions below, if needed>
-
-## Question 2: 
-
-
-
+## Question 2:
 
 \newpage
 
 # Summary and Conclusions
 
-
 \newpage
 
 # References
-<add references here if relevant, otherwise delete this section> 
+
+\<add references here if relevant, otherwise delete this section\>
