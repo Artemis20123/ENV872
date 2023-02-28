@@ -1,12 +1,13 @@
 ---
-title: "Assignment 5: Data Visualization"
+title: 'Assignment 5: Data Visualization'
 author: "Jiahuan Li"
 date: "Spring 2023"
-output: pdf_document
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
 geometry: margin=2.54cm
-fig_height: 3
-fig_width: 4
-editor_options: 
+editor_options:
   chunk_output_type: console
 ---
 
@@ -87,8 +88,8 @@ my_theme <- theme_base() +
     ),
     legend.title = element_text(
       color='black'
-    )
-    
+    ),
+    axis.title = element_text(size = 10)
   )
 
 theme_set(my_theme)
@@ -152,7 +153,10 @@ plot2c <- lakes %>%
   
 plot_grid(plot2a, plot2b, plot2c, 
           nrow = 3, align = 'h', 
-          labels = c('(a)', '(b)','(c)'))
+          labels = c('(a)', '(b)','(c)'), label_size = 10,
+          hjust = -0.5) +
+  theme(legend.text = element_text(size = 10),
+        legend.title = element_text(size = 12))
 ```
 
 Question: What do you observe about the variables of interest over seasons and between lakes?
@@ -184,7 +188,11 @@ plot4 <- litter %>%
   geom_point() +
   facet_wrap(vars(nlcdClass), ncol = 3) +
   xlab("Collect date") +
-  ylab("Dry mass")
+  ylab("Dry mass") +
+  theme(axis.text = element_text(size = 10),
+        strip.text = element_text(size = 7),
+        legend.text = element_text(size = 10),
+        legend.title = element_text(size = 12))
 
 
 print(plot4)
