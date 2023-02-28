@@ -14,7 +14,7 @@ editor_options:
 
 2.  Interpret and report the results of ANOVA in publication-style formats
 
-    (important to see the heterogeneity and other possible variables)
+    **(important to see the heterogeneity and other possible variables)**
 
 ## Set up
 

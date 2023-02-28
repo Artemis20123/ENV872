@@ -96,7 +96,7 @@ An exploratory option to visualize the model fit is to use the function `plot`. 
 
 3.  **Scale-Location.** Similar to the residuals vs. fitted graph, this will graph the squared standardized residuals by the fitted values.
 
-4.  **Residuals vs. Leverage (\*\* can be used to check my result).** This graph will display potential outliers. The values that fall outside the dashed red lines (Cook's distance) are outliers for the model. Watch for drastic departures of the solid red line from horizontal - this is a sign of a poor model fit.
+4.  **Residuals vs. Leverage (\*\* can be used to check my MP result).** This graph will display potential outliers. The values that fall outside the dashed red lines (Cook's distance) are outliers for the model. Watch for drastic departures of the solid red line from horizontal - this is a sign of a poor model fit.
 
 ```{r, fig.height = 3, fig.width = 4}
 par(mfrow = c(2,2), mar=c(4,4,4,4))

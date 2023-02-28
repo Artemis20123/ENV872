@@ -9,11 +9,13 @@ editor_options:
 ---
 
 ## Objectives
-1. Perform simple data visualizations in the R package `ggplot`
-2. Develop skills to adjust aesthetics and layers in graphs
-3. Apply a decision tree framework for appropriate graphing methods
+
+1.  Perform simple data visualizations in the R package `ggplot`
+2.  Develop skills to adjust aesthetics and layers in graphs
+3.  Apply a decision tree framework for appropriate graphing methods
 
 ## Opening discussion
+
 Effective data visualization depends on purposeful choices about graph types. The ideal graph type depends on the type of data and the message the visualizer desires to communicate. The best visualizations are clear and simple. A good resource for data visualization is [Data to Viz](https://www.data-to-viz.com/), which includes both a decision tree for visualization types and explanation pages for each type of data, including links to R resources to create them. Take a few minutes to explore this website.
 
 ## Set Up
@@ -38,41 +40,41 @@ PeterPaul.chem.nutrients.gathered$sampledate <- ymd(PeterPaul.chem.nutrients.gat
 
 ## ggplot
 
-ggplot, called from the package `ggplot2`, is a graphing and image generation tool in R. This package is part of tidyverse. While base R has graphing capabilities, ggplot has the capacity for a wider range and more sophisticated options for graphing. 
-ggplot has only a few rules: 
+ggplot, called from the package `ggplot2`, is a graphing and image generation tool in R. This package is part of tidyverse. While base R has graphing capabilities, ggplot has the capacity for a wider range and more sophisticated options for graphing. ggplot has only a few rules:
 
-* The first line of ggplot code always starts with `ggplot()`
-* A data frame must be specified within the `ggplot()` function. Additional datasets can be specified in subsequent layers.
-* Aesthetics must be specified, most commonly x and y variables but including others. Aesthetics can be specified in the `ggplot()` function or in subsequent layers.
-* Additional layers must be specified to fill the plot. 
+-   The first line of ggplot code always starts with `ggplot()`
+-   A data frame must be specified within the `ggplot()` function. Additional datasets can be specified in subsequent layers.
+-   Aesthetics must be specified, most commonly x and y variables but including others. Aesthetics can be specified in the `ggplot()` function or in subsequent layers.
+-   Additional layers must be specified to fill the plot.
 
 ### Geoms
 
-Here are some commonly used layers for plotting in ggplot: 
+Here are some commonly used layers for plotting in ggplot:
 
-* geom_bar
-* geom_histogram
-* geom_freqpoly
-* geom_boxplot
-* geom_violin
-* geom_dotplot
-* geom_density_ridges
-* geom_point
-* geom_errorbar
-* geom_smooth
-* geom_line
-* geom_area
-* geom_abline (plus geom_hline and geom_vline)
-* geom_text
+-   geom_bar
+-   geom_histogram
+-   geom_freqpoly
+-   geom_boxplot
+-   geom_violin
+-   geom_dotplot
+-   geom_density_ridges
+-   geom_point
+-   geom_errorbar
+-   geom_smooth
+-   geom_line
+-   geom_area
+-   geom_abline (plus geom_hline and geom_vline)
+-   geom_text
 
 ### Aesthetics
-Here are some commonly used aesthetic types that can be manipulated in ggplot: 
 
-* color
-* fill
-* shape
-* size
-* transparency
+Here are some commonly used aesthetic types that can be manipulated in ggplot:
+
+-   color
+-   fill
+-   shape
+-   size
+-   transparency
 
 ### Plotting continuous variables over time: Scatterplot and Line Plot
 
@@ -123,7 +125,6 @@ print(PMplot.line)
 
 ```
 
-
 ### Plotting the relationship between two continuous variables: Scatterplot
 
 ```{r, fig.height = 3, fig.width = 4, warning = FALSE}
@@ -159,7 +160,8 @@ print(NvsP)
 ```
 
 ### Plotting continuous vs. categorical variables
-A traditional way to display summary statistics of continuous variables is a bar plot with error bars. Let's explore why this might not be the most effective way to display this type of data. Navigate to the Caveats page on Data to Viz (https://www.data-to-viz.com/caveats.html) and find the page that explores barplots and error bars. 
+
+A traditional way to display summary statistics of continuous variables is a bar plot with error bars. Let's explore why this might not be the most effective way to display this type of data. Navigate to the Caveats page on Data to Viz (<https://www.data-to-viz.com/caveats.html>) and find the page that explores barplots and error bars.
 
 What might be more effective ways to display the information? Navigate to the boxplots page in the Caveats section to explore further.
 
