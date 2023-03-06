@@ -83,9 +83,10 @@ summary(a)
 plot(a)
 
 # se shown in the grey region
-ggplot(EPAair, aes(Ozone, PM2.5)) +
+a1 = ggplot(EPAair, aes(Ozone, PM2.5)) +
   geom_point() +
   geom_smooth(method = "lm", col = "blue", se = TRUE)
+a1
 ```
 
 ## AIC to select variables
@@ -98,12 +99,13 @@ What other variables can we add to improve model?
 
 # install.packages("corrplot")
 library(corrplot)
+library(dplyr)
 
 # how to assign a value to each county and include it into the correlation plot?
 subset =  EPAair %>%
           select(COUNTY:Ozone) %>%
           na.omit() %>%
-          mutate(COUNTY = group_indices(as.character(COUNTY)) ,
+          mutate(COUNTY = as.character(COUNTY) ,
                  Month = as.factor(Month),
                  Year = as.factor(Year))
 
@@ -117,10 +119,12 @@ corrplot.mixed(Corr, upper = "ellipse")
 
 #Exercise 5: Choose a model by AIC in a Stepwise Algorithm. Do the results from AIC match the variables you selected on Exercise 4?
 
-AIC = lm(data= subset1, PM2.5 ~ Ozone + Year + Month + mean_Lat + mean_Lng)
-summary(AIC)
-step(AIC)
-
+AIC1 = lm(data= subset1, PM2.5 ~ Ozone + Year + Month + mean_Lat + mean_Lng)
+summary(AIC1)
+step(AIC1)
+# for step()function, the last part"coefficients" will tell you which vars should be kept.
+# that is, the <none> row should be the first row in each table (smallest AIC). If not, the variable above none should be removed.
+# e.g., the year row means the AIC will be 29271 if the year variable is removed. It decreases the original AIC, thus, making the result better.
 
 #Exercise 6: Run another regression using the variables selected on Exercise 6. Compare r-squared value with the one from Exercise 2. 
 
