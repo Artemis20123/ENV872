@@ -7,14 +7,16 @@ runtime: shiny
 ---
 
 ## Overview
+
 RMarkdown is a powerful tool for creating dynamic documents that combine code, text, and graphics. With the addition of widgets, it's possible to make these documents even more interactive and engaging. In this lesson, we will explore how to create interactive HTML files using RMarkdown widgets.
 
 ## LESSON OBJECTIVES
 
-1. Create plotting functions that accept variables
-2. Use widgets from the `shiny` library to make interactive HTML documents
+1.  Create plotting functions that accept variables
+2.  Use widgets from the `shiny` library to make interactive HTML documents
 
 ### Set up the coding environment
+
 ```{r setup, echo=FALSE, warning=FALSE, message=FALSE}
 #Load packages
 library(tidyverse);library(here);library(lubridate)
@@ -33,9 +35,10 @@ theme_set(my_theme)
 
 ```
 
-
 ### Create a base plot
+
 We will plot Total P as a function of time, coloring data by depth, and symbolizing by lake
+
 ```{r Create base plot, echo=FALSE, eval=FALSE}
 #Construct the plot
 nutrient_data %>% 
@@ -66,7 +69,8 @@ nutrient_data %>%
 ```
 
 ## Using variables in plots
-Now tweak the above code so that the variable we plot (`tp_ug`) is specified as a variable rather than hard coded in our ggplot command. We will also set the start and end dates to variables as well. 
+
+Now tweak the above code so that the variable we plot (`tp_ug`) is **specified as a variable rather than hard coded** in our ggplot command. We will also set the start and end dates to variables as well.
 
 To do this we need to convince R that the value we associate with the `y` aesthetic is a variable, not a column name. This is done by the odd convention of inserting the variable within the code `!!sym()`. The `!!` (pronounced "bang-bang") combined with `sym()` are "Tidy eval helpers" necessary because tidy-R does away with quotations. See more info [here](https://ggplot2.tidyverse.org/reference/tidyeval.html).
 
@@ -103,18 +107,18 @@ plot_it <- function(the_parameter,start_year,end_year){
   return(my_plot)
 }
 
-
+# alter the parameters to yield different results
+# plot_it('tn_ug', 1990, 2020)
 ```
 
-##Interactive R with Shiny Widgets
-The R MarkDown Cheat Sheet provides a short example on how to make your Markdown document interactive. First you must alter your yaml section to read:  
-```
-output: html_document
-runtime: shiny
-```
-Notice that when you do so, the Knit menu is replaced. 
+##Interactive R with Shiny Widgets The R MarkDown Cheat Sheet provides a short example on how to make your Markdown document interactive. First you must alter your yaml section to read:
 
-Then we can add the code chunk listed in the document.Before running this code, however, we should set the code chunk options for the previous code chunks so that they are not run (eval) and not shown (echo). 
+    output: html_document
+    runtime: shiny
+
+Notice that when you do so, the Knit menu is replaced.
+
+Then we can add the code chunk listed in the document.Before running this code, however, we should set the code chunk options for the previous code chunks so that they are not run (eval) and not shown (echo).
 
 ```{r, echo=FALSE}
 numericInput(
@@ -125,12 +129,13 @@ numericInput(
 renderTable({
 head(cars, input$n)
 })
-
 ```
 
-Shiny has many other input widgets: https://shiny.rstudio.com/gallery/widget-gallery.html. Below we'll use a Select Box widget to specifiy the variable shown in our plot. We'll also add a slider range to limit the date shown in our plot. 
+Shiny has many other input widgets: <https://shiny.rstudio.com/gallery/widget-gallery.html>. Below we'll use a Select Box widget to specifiy the variable shown in our plot. We'll also add a slider range to limit the date shown in our plot.
 
 Note: Before running this plot, set the previous code chunk to not evaluate
+
+-   evaluate: run the code; echo: show the code
 
 ```{r widget exploration, echo=FALSE}
 selectInput(
@@ -154,5 +159,3 @@ renderPlot(
     input$YearSlider[2])
   )
 ```
-
-
