@@ -19,6 +19,8 @@ editor_options:
 
 The analysis of variance (ANOVA), and linear regression are special cases of the **generalized linear model** (GLM). The GLM also includes analyses not covered in this class, including logistic regression, multinomial regression, chi square, and log-linear models. The common characteristic of general linear models is the expression of a continuous response variable as a linear combination of the effects of categorical or continuous explanatory variables, plus an error term that expresses the random error associated with the coefficients of all explanatory variables. The explanatory variables comprise the deterministic component of the model, and the error term comprises the stochastic component of the model. Historically, artificial distinctions were made between linear models that contained categorical and continuous explanatory variables, but this distinction is no longer made. The inclusion of these models within the umbrella of the GLM allows models to fit the main effects of both categorical and continuous explanatory variables as well as their interactions.
 
+方差分析(ANOVA)和线性回归是广义线性模型(GLM)的特例。GLM还包括本课程未涉及的分析，包括逻辑回归、多项回归、卡方和对数线性模型。一般线性模型的共同特征是将连续响应变量表示为分类或连续解释变量的效应的线性组合，加上表示与所有解释变量系数相关的随机误差的误差项。解释变量包括模型的确定性成分，误差项包括模型的随机成分。历史上，在包含分类解释变量和连续解释变量的线性模型之间人为地进行了区分，但现在不再进行这种区分了。将这些模型包括在GLM的保护伞内，使模型能够拟合分类和连续解释变量的主要影响及其相互作用。
+
 ### Choosing a model from your data: A "cheat sheet"
 
 **One-way ANOVA (Analysis of Variance):** Continuous response, one categorical explanatory variable with more than two categories. When the categorical explanatory variable just have two categories use the t-test
