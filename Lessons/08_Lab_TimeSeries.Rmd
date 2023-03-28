@@ -9,9 +9,10 @@ editor_options:
 ---
 
 ## Objectives
-1. Answer questions on M8
-2. Explore the components of times series: trend, seasonal, random
-3. Perform trend analysis on another dataset
+
+1.  Answer questions on M8
+2.  Explore the components of times series: trend, seasonal, random
+3.  Perform trend analysis on another dataset
 
 ## Set up
 
@@ -39,7 +40,7 @@ theme_set(mytheme)
 
 ## Import Datasets
 
-Today we will work with data from the Climate Change Knowledge Portal from the World Bank Group. More specifically historical rainfall and temperature averages for Brazil. You will find two new data files on folder "/Data/Raw/". One with rainfall named "pr_1901_2016_BRA.csv" and another with temperature named "tas_1901_2016_BRA.csv". The data span the period from 1901 to 2016 in monthly steps. You can download the data [here][https://climateknowledgeportal.worldbank.org/download-data]
+Today we will work with data from the Climate Change Knowledge Portal from the World Bank Group. More specifically historical rainfall and temperature averages for Brazil. You will find two new data files on folder "/Data/Raw/". One with rainfall named "pr_1901_2016_BRA.csv" and another with temperature named "tas_1901_2016_BRA.csv". The data span the period from 1901 to 2016 in monthly steps. You can download the data [here][<https://climateknowledgeportal.worldbank.org/download-data>]
 
 Research question: Can you see any changes on the rainfall regime or average temperature over time?
 
@@ -77,7 +78,6 @@ BR_complete <- inner_join(Rainfall_BR_processed,Temp_BR_processed)
            
 ```
 
-
 ## Initial plots
 
 ```{r}
@@ -105,16 +105,14 @@ BR_complete <- inner_join(Rainfall_BR_processed,Temp_BR_processed)
 
 ```
 
-
 ## Decomposing a time series dataset
 
-A given time series can be made up of several component series: 
+A given time series can be made up of several component series:
 
-1. A **seasonal** component, which repeats over a fixed known period (e.g., seasons of the year, months, days of the week, hour of the day)
-2. A **trend** component, which quantifies the upward or downward progression over time. The trend component of a time series does not have to be monotonic.
-3. An **error** or **random** component, which makes up the remainder of the time series after other components have been accounted for. This component reflects the noise in the dataset. 
-4. (optional) A **cyclical** component, which repeats over periods greater than the seasonal component. A good example of this is El Niño Southern Oscillation (ENSO) cycles, which occur over a period of 2-8 years.
-
+1.  A **seasonal** component, which repeats over a fixed known period (e.g., seasons of the year, months, days of the week, hour of the day)
+2.  A **trend** component, which quantifies the upward or downward progression over time. The trend component of a time series does not have to be monotonic.
+3.  An **error** or **random** component, which makes up the remainder of the time series after other components have been accounted for. This component reflects the noise in the dataset.
+4.  (optional) A **cyclical** component, which repeats over periods greater than the seasonal component. A good example of this is El Niño Southern Oscillation (ENSO) cycles, which occur over a period of 2-8 years.
 
 The `stl` function decomposes the time series object into its component parts. We must specify that the window for seasonal extraction is either "periodic" or a specific number of at least 7. The decomposition proceeds through a loess (locally estimated scatterplot smoothing) function.
 
@@ -145,16 +143,14 @@ The `stl` function decomposes the time series object into its component parts. W
 
 ```
 
-
 ## Trend analysis
 
-Monotonic trends are a gradual shift over time that is consistent in direction. Specific tests for monotonic trend analysis are listed below, with assumptions and tips: 
+Monotonic trends are a gradual shift over time that is consistent in direction. Specific tests for monotonic trend analysis are listed below, with assumptions and tips:
 
-* **linear regression**: no seasonality, fits the assumptions of a parametric test. Function: `lm`
-* **Mann-Kendall**: no seasonality, non-parametric, missing data allowed. Function: `Kendall::MannKendall()` or `trend::mk.test()`
-* **Seasonal Mann-Kendall**: seasonality, non-parametric `Kendall::SeasonalMannKendall` or `trend::smk.test()`
-* **Spearman Rho**: no seasonality, non-parametric, missing data allowed. Function: `stats::cor.test(method="spearman")`
-
+-   **linear regression**: no seasonality, fits the assumptions of a parametric test. Function: `lm`
+-   **Mann-Kendall**: no seasonality, non-parametric, missing data allowed. Function: `Kendall::MannKendall()` or `trend::mk.test()`
+-   **Seasonal Mann-Kendall**: seasonality, non-parametric `Kendall::SeasonalMannKendall` or `trend::smk.test()`
+-   **Spearman Rho**: no seasonality, non-parametric, missing data allowed. Function: `stats::cor.test(method="spearman")`
 
 ```{r}
 
@@ -182,8 +178,6 @@ Monotonic trends are a gradual shift over time that is consistent in direction. 
 
 ```
 
-What would we conclude based on these findings? 
+What would we conclude based on these findings?
 
 > Answer:
-
-
